@@ -50,7 +50,7 @@ func main() {
             *input = "adb"
         }
     }
-    
+
 	switch *input {
 	case "adb":
 		testEnv()
@@ -155,14 +155,15 @@ func logmessage(date string, time string, threadid int, processid int, prio stri
 	// Wrap message and fill to terminal width
 	wrappedmessage := wrapmessage(message)
 
+  var maxTagLength int = *taglength-len(time)-1
 	// Limit tag (if necessary)
-	if len(tag) > *taglength {
-		tag = tag[0:*taglength]
+	if len(tag) > maxTagLength {
+		tag = tag[0:maxTagLength]
 	}
 
 	// Print to stdout
 	if *stdout {
-		fmt.Printf("%s%-"+strconv.Itoa(*taglength)+"s[%s] %s%s\n", pre, tag, prio, wrappedmessage, Reset)
+		fmt.Printf("%s%s %-"+strconv.Itoa(maxTagLength)+"s[%s] %s%s\n", pre, time, tag, prio, wrappedmessage, Reset)
 	}
 
 	// Print to file if needed
