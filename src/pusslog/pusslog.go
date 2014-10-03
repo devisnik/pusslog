@@ -155,7 +155,7 @@ func logmessage(date string, time string, threadid int, processid int, prio stri
 	// Wrap message and fill to terminal width
 	wrappedmessage := wrapmessage(message)
 
-  var maxTagLength int = *taglength-len(time)-1
+	var maxTagLength int = *taglength-len(time)-1
 	// Limit tag (if necessary)
 	if len(tag) > maxTagLength {
 		tag = tag[0:maxTagLength]
